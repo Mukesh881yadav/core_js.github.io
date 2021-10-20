@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+		ul li{
+			list-style-type: none;
+			color: green;
+			font-size: 20px;
+			font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
+		}
+		ul li a{
+			color: black;
+			margin-left:50px;
+			font-size:30px;
+		}
+
+		input{
+			border: 1px solid red;
+			padding: 20px 40px;
+		}
+		.btn{
+			background-color: blue;
+			color: white;
+			font-size: 15px;
+		}
+	</style>
+</head>
+<body>
+	<h1>ToDO list</h1>
+ <div class="container">
+	 <ul id="lists"></ul>
+	 <input type="text" id="name" class="input">
+	 <input type="button" value="Add" id="btnclick" class="btn" onclick="add()">
+	 <!-- <span id="error"></span> -->
+ </div>
+
+	<script>
+		window.onload = () => {
+			let lists = document.getElementById("lists");
+			lists.addEventListener("click", removeElement);
+		};
+   		function add(){
+	   		var name=document.getElementById('name').value;
+			if(name==""){
+				alert("fill the value")
+			}
+	   		else{
+				var lists=document.getElementById('lists');
+				let li = document.createElement("li");
+				li.className = "list-item";
+			
+				let deleteButton = document.createElement("button");
+				deleteButton.className = "btn-delete";
+			
+				deleteButton.appendChild(document.createTextNode("Delete"));
+
+				li.appendChild(document.createTextNode(name));
+				li.appendChild(deleteButton);
+
+				var pos=lists.firstElementChild;
+
+				if(pos==null){
+					lists.appendChild(li);
+				}
+				else{
+					lists.insertBefore(li,pos);
+				}
+				document.getElementById('name').value="";	   
+			}
+		
+		}		
+	
+		function removeElement(e){
+			let itemName = e.target.parentElement.firstChild.data
+			if (e.target.classList.contains("btn-delete")) {
+				if (confirm(`Are you sure want to delete ${itemName} ?`)) {
+				let li = e.target.parentNode;
+				lists.removeChild(li);
+			}
+		}
+	}
+	</script>
+</body>
+</html>

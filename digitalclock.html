@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>digital clock</title>
+  <style>
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+  background-color: darkkhaki;
+}
+.hours, .minute, .seconds, .amorpm{
+  width: 4em;
+  height: 4em;
+  background-color: darkseagreen;
+  padding: 1em;
+  margin: 1em;
+  text-align: center;
+  border-radius: 50px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: white;
+}
+.box{
+  text-align: center;
+}
+.box>h1{
+color:grey;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      <div class="hours">
+<h1 id="hours"></h1>
+      </div>
+      <h1>hours</h1>
+    </div>
+
+    <div class="box">
+      <div class="minute">
+        <h1 id="minute"></h1>
+      </div>
+      <h1>miniute</h1>
+    </div>
+
+    <div class="box">
+      <div class="seconds">
+        <h1 id="seconds">8</h1>
+      </div>
+      <h1>seconds</h1>
+    </div>
+
+    <div class="box">
+      <div class="amorpm">
+        <h1 id="amorpm">8</h1>
+      </div>
+      <h1>hours</h1>
+    </div>
+  </div>
+  <script>
+    // alert("hi");
+    let digitalclock=function(){
+      let date=new Date();
+      let hours=date.getHours();
+      let  miniute=date.getMinutes()
+      let seconds=date.getSeconds();
+    let pm="pm"
+    let am="am"
+      if(hours>=12){
+        document.getElementById("amorpm").innerHTML=pm
+      }
+      else{
+        document.getElementById("amorpm").innerHTML=am
+      }
+      document.getElementById("hours").innerHTML=hours;
+      document.getElementById("minute").innerHTML=miniute;
+      document.getElementById("seconds").innerHTML=seconds;
+      setTimeout(digitalclock,500)
+    }
+    digitalclock();
+  </script>
+</body>
+</html>

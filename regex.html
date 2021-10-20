@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            border: 1px solid black;
+            height: 70vh;
+            margin-top: 30px;
+
+        }
+        .container div{
+            margin: 30px;
+        }
+        .container div input{
+        padding: 10px 50px;
+        border-color: blue;
+        }
+        .submit{
+            padding: 15px 40px;
+            font-size: 20px;
+            color:seagreen;
+            cursor: pointer;
+            margin-left: 60px;
+        }
+    </style>
+</head>
+<body>
+    <h1>RegEx form</h1>
+    <div class="container">
+        <form action="www.html" onsubmit="return change()">
+            <div class="form-group">
+                <label for="">Username</label>
+                <input type="text" id="username">
+                <span style="color: red;" id="usererror"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="text" id="Password">
+                <span id="passworderror"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="">Confirm Password</label>
+                <input type="text" id="conpassword">
+                <span id="cnfpasserror"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="text" id="Email">
+                <span id="mailerror"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="">Mobline no</label>
+                <input type="text" id="moblieno">
+                <span id="numberror"></span>
+            </div>
+
+            <input type="submit" class="submit">
+        </form>
+
+        <script type="text/javascript">
+            function change(){
+                var user=document.getElementById('username').value;
+                var pass=document.getElementById('Password').value;
+                var cnfpass=document.getElementById('conpassword').value;
+                var eml=document.getElementById('Email').value;
+                var Mobno=document.getElementById('moblieno').value;
+
+
+                var userchek=/^[A-Za-z.]{3,15}$/;
+                var passwordchek=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+                var emaolchek=/^[A-Za-z_[0-9]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$/;
+                var mob=/[789][0-9]{9}/;
+
+
+                if(userchek.test(user)){
+                 document.getElementById('usererror').innerHTML="";
+                }
+                else{
+                    document.getElementById('usererror').innerHTML="Username invalid"; 
+
+                }
+
+                if(passwordchek.test(pass)){
+                 document.getElementById('passworderror').innerHTML="";
+                }
+                else{
+                    document.getElementById('passworderror').innerHTML="password invalid"; 
+                }
+
+                if(cnfpass.match(pass)){
+                 document.getElementById('cnfpasserror').innerHTML="";
+                }
+                else{
+                    document.getElementById('cnfpasserror').innerHTML="password is not matching"; 
+                }
+
+                
+                if(emaolchek.test(eml)){
+                 document.getElementById('mailerror').innerHTML="";
+                }
+                else{
+                    document.getElementById('mailerror').innerHTML="invalid enmail"; 
+                }
+
+                if(mob.test(Mobno)){
+                 document.getElementById('numberror').innerHTML="";
+                }
+                else{
+                    document.getElementById('numberror').innerHTML="Username invalid mob no"; 
+                }
+                return false;
+            }
+     
+        </script>
+    </div>
+</body>
+</html>
